@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/rs/zerolog v1.34.0
-	github.com/skypbc/goutils v0.2.2
+	github.com/skypbc/goutils v0.2.3
 )
 
 require (
