@@ -2,13 +2,14 @@ package enums
 
 import (
 	"fmt"
-	"github.com/skypbc/enums/internal/utils"
-	"github.com/skypbc/goutils/gerrors"
+	"log/slog"
 	"path/filepath"
 	"slices"
 	"strings"
 
-	"github.com/rs/zerolog/log"
+	"github.com/skypbc/enums/internal/utils"
+	"github.com/skypbc/goutils/gerrors"
+	"github.com/skypbc/goutils/gfmt"
 )
 
 func Build(enumFiles []EnumFile, settings map[string]any) (map[string]string, error) {
@@ -52,10 +53,10 @@ func build(enumFile *EnumFile, settings map[string]any) (err error) {
 		filename2 := getFilename2(enumFile, &enumSettings)
 		folder := getFolder(enumFile, lang, filename1, filename2, &enumSettings)
 
-		log.Debug().Msgf(
+		slog.Debug(gfmt.Sprintf(
 			"Lang: %s, Folder: %s, Filename1: %s, Filename2: %s, Extension: %s\n",
 			lang, folder, filename1, filename2, enumSettings.File.Extension,
-		)
+		))
 
 		enumFile.Result[lang] = EnumResult{
 			Folder:   folder,
